@@ -3,6 +3,8 @@ package com.mxcst.classic.mapper;
 import com.mxcst.classic.entity.Account;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 @Mapper
 public interface AccountMapper {
     /**
@@ -60,4 +62,9 @@ public interface AccountMapper {
      * @mbg.generated
      */
     int updateByPrimaryKey(Account record);
+
+    /**
+     * @return
+     */
+    List<Account> selectPlayers();
 }
