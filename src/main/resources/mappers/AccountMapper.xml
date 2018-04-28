@@ -340,6 +340,33 @@
     NOT IN
     (1, 2, 3, 4)
   </select>
+  <!--查询是否重复-->
+  <select id="selectSameName" resultType="java.lang.Integer" parameterType="java.lang.String">
+    SELECT
+      count(*)
+      FROM account
+      WHERE
+      username = #{username,jdbcType=VARCHAR}
+  </select>
+  <!--添加用户-->
+  <insert id="insertPlayer" parameterType="com.mxcst.classic.entity.Account">
+    insert into
+    account (username,sha_pass_hash,gmlevel)
+    values (
+    #{username,jdbcType=VARCHAR},
+    SHA1(CONCAT(UPPER(#{shaPassHash,jdbcType=VARCHAR}),
+     ':',
+     UPPER(#{shaPassHash,jdbcType=VARCHAR}))),#{gmlevel,jdbcType=TINYINT}
+     );
+  </insert>
+  <!--更改密码-->
+  <update id="updatePsw" parameterType="com.mxcst.classic.entity.Account">
+    UPDATE account
+    SET
+    sha_pass_hash = SHA1(CONCAT(UPPER(#{shaPassHash,jdbcType=VARCHAR}),':',
+    UPPER(#{shaPassHash,jdbcType=VARCHAR})))
+    WHERE id = #{id,jdbcType=INTEGER};
+  </update>
 
 
 </mapper>

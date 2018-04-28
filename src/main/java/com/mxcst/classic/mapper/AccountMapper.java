@@ -64,7 +64,30 @@ public interface AccountMapper {
     int updateByPrimaryKey(Account record);
 
     /**
+     * 查询玩家
      * @return
      */
     List<Account> selectPlayers();
+
+    /**
+     * 查询用户名是否重复
+     * @param username
+     * @return
+     */
+    int selectSameName(String username);
+
+    /**
+     * 添加用户
+     * @param record
+     * @return
+     */
+    int insertPlayer(Account record);
+
+    /**
+     * 更改密码
+     * @param record
+     * @return
+     */
+    int updatePsw(Account record);
+
 }
